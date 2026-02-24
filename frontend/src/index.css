@@ -1,0 +1,680 @@
+@import "tailwindcss";
+
+/* DM Sans Font */
+* {
+  font-family: 'DM Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+/* 
+ * NoSo Company Brand Color Palette
+ * Extracted from Logo_Colors.png
+ * 
+ * Primary Brand Colors:
+ * - Primary Blue: #1E3A5F (Deep Navy Blue) - Main brand color
+ * - Secondary Blue: #2563EB (Vibrant Blue) - Accent and CTAs
+ * - Accent Teal: #0D9488 (Teal) - Secondary accent
+ * - Light Blue: #3B82F6 (Sky Blue) - Highlights
+ * 
+ * Supporting Colors:
+ * - Dark Navy: #0F172A (Almost Black) - Text and dark backgrounds
+ * - Slate: #334155 (Dark Slate) - Secondary text
+ * - Light Gray: #F1F5F9 (Light Slate) - Backgrounds
+ * - White: #FFFFFF - Clean backgrounds
+ */
+
+@layer base {
+  :root {
+    /* NoSo Brand Colors - Light Mode */
+    --background: 210 40% 98%;
+    --foreground: 222 47% 11%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 222 47% 11%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 222 47% 11%;
+
+    /* Primary: Deep Navy Blue #1E3A5F */
+    --primary: 213 52% 24%;
+    --primary-foreground: 0 0% 100%;
+
+    /* Secondary: Light Slate Background */
+    --secondary: 210 40% 96%;
+    --secondary-foreground: 222 47% 11%;
+
+    --muted: 210 40% 96%;
+    --muted-foreground: 215 16% 47%;
+
+    /* Accent: Teal #0D9488 */
+    --accent: 175 84% 32%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 214 32% 91%;
+    --input: 214 32% 91%;
+    --ring: 213 52% 24%;
+
+    --radius: 0.75rem;
+
+    /* NoSo Brand Custom Properties */
+    --brand-primary: #1E3A5F;
+    --brand-secondary: #2563EB;
+    --brand-accent: #0D9488;
+    --brand-light: #3B82F6;
+    --brand-dark: #0F172A;
+    --brand-slate: #334155;
+    --brand-gray: #F1F5F9;
+  }
+
+  .dark {
+    --background: 222 47% 8%;
+    --foreground: 210 40% 98%;
+
+    --card: 222 47% 11%;
+    --card-foreground: 210 40% 98%;
+
+    --popover: 222 47% 11%;
+    --popover-foreground: 210 40% 98%;
+
+    /* Primary: Vibrant Blue for dark mode */
+    --primary: 217 91% 60%;
+    --primary-foreground: 222 47% 8%;
+
+    --secondary: 217 33% 17%;
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 217 33% 17%;
+    --muted-foreground: 215 20% 65%;
+
+    /* Accent: Teal for dark mode */
+    --accent: 175 84% 40%;
+    --accent-foreground: 222 47% 8%;
+
+    --destructive: 0 63% 50%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 217 33% 20%;
+    --input: 217 33% 20%;
+    --ring: 217 91% 60%;
+  }
+}
+
+@layer base {
+  * {
+    border-color: hsl(var(--border));
+  }
+
+  body {
+    background-color: hsl(var(--background));
+    color: hsl(var(--foreground));
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: hsl(var(--muted));
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: hsl(var(--muted-foreground) / 0.3);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: hsl(var(--muted-foreground) / 0.5);
+}
+
+/* Custom Animations */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0) translateX(0);
+  }
+  25% {
+    transform: translateY(-20px) translateX(10px);
+  }
+  50% {
+    transform: translateY(-10px) translateX(-10px);
+  }
+  75% {
+    transform: translateY(-30px) translateX(5px);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+@keyframes pulse-ring {
+  0% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(30, 58, 95, 0.7);
+  }
+  70% {
+    transform: scale(1);
+    box-shadow: 0 0 0 10px rgba(30, 58, 95, 0);
+  }
+  100% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(30, 58, 95, 0);
+  }
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+.animate-shimmer {
+  animation: shimmer 3s ease-in-out infinite;
+}
+
+.animate-pulse-ring {
+  animation: pulse-ring 2s cubic-bezier(0.455, 0.03, 0.515, 0.955) infinite;
+}
+
+/* Cart Button Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    transform: scale(0);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes bounceIn {
+  0% {
+    transform: scale(0.3);
+    opacity: 0;
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  70% {
+    transform: scale(0.9);
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes checkmark {
+  0% {
+    stroke-dashoffset: 100;
+    opacity: 0;
+  }
+  100% {
+    stroke-dashoffset: 0;
+    opacity: 1;
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideInLeft {
+  from {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes cartBounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  25% {
+    transform: translateY(-3px) rotate(-5deg);
+  }
+  50% {
+    transform: translateY(0) rotate(0);
+  }
+  75% {
+    transform: translateY(-2px) rotate(3deg);
+  }
+}
+
+.animate-cart-bounce {
+  animation: cartBounce 0.5s ease-out;
+}
+
+/* Glass Effect */
+.glass {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Gradient Text - Brand Colors */
+.gradient-text {
+  background: linear-gradient(135deg, #1E3A5F, #2563EB, #0D9488);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Card Hover Effect */
+.hover-lift {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.hover-lift:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.15);
+}
+
+/* Smooth Focus States */
+input:focus, 
+textarea:focus, 
+select:focus,
+button:focus-visible {
+  outline: none;
+}
+
+/* Button Press Effect */
+.btn-press {
+  transition: transform 0.1s ease;
+}
+
+.btn-press:active {
+  transform: scale(0.98);
+}
+
+/* Fade In Animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fadeIn {
+  animation: fadeIn 0.5s ease forwards;
+}
+
+/* Slide Up Animation */
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-slideUp {
+  animation: slideUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Staggered Animation Delays */
+.stagger-1 { animation-delay: 0.1s; }
+.stagger-2 { animation-delay: 0.2s; }
+.stagger-3 { animation-delay: 0.3s; }
+.stagger-4 { animation-delay: 0.4s; }
+.stagger-5 { animation-delay: 0.5s; }
+
+/* Glow Effect - Brand Blue */
+.glow-blue {
+  box-shadow: 0 0 30px rgba(37, 99, 235, 0.3);
+}
+
+/* Text Selection - Brand Color */
+::selection {
+  background-color: rgba(37, 99, 235, 0.2);
+  color: inherit;
+}
+
+/* Custom Focus Ring - Brand Color */
+.focus-ring {
+  transition: box-shadow 0.2s ease;
+}
+
+.focus-ring:focus {
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.3);
+}
+
+/* Smooth Link Underline - Brand Gradient */
+.link-underline {
+  position: relative;
+}
+
+.link-underline::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: linear-gradient(to right, #1E3A5F, #2563EB);
+  transition: width 0.3s ease;
+}
+
+.link-underline:hover::after {
+  width: 100%;
+}
+
+/* Page Transition Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+}
+
+@keyframes expandIn {
+  from {
+    opacity: 0;
+    max-height: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    max-height: 1000px;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    max-height: 0;
+  }
+  to {
+    opacity: 1;
+    max-height: 2000px;
+  }
+}
+
+@keyframes iconPop {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.15); }
+  100% { transform: scale(1); }
+}
+
+@keyframes cardHover {
+  0% { transform: translateY(0) scale(1); }
+  100% { transform: translateY(-4px) scale(1.02); }
+}
+
+@keyframes shimmerGlow {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+@keyframes pulseGlow {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.4); }
+  50% { box-shadow: 0 0 0 8px rgba(59, 130, 246, 0); }
+}
+
+@keyframes rotateChevron {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(180deg); }
+}
+
+.page-transition-enter {
+  animation: fadeIn 0.3s ease-out forwards;
+}
+
+.page-transition-exit {
+  animation: fadeOut 0.2s ease-in forwards;
+}
+
+/* Apply to main content wrapper */
+.animate-page-enter {
+  animation: fadeIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Subtle fade for components */
+.animate-fade-in {
+  animation: fadeIn 0.3s ease-out forwards;
+}
+
+.animate-fade-in-up {
+  opacity: 0;
+  animation: fadeIn 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Category Card Animations */
+.category-card {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.category-card:hover {
+  transform: translateY(-4px);
+}
+
+.category-card:hover .category-icon {
+  animation: iconPop 0.4s ease-in-out;
+}
+
+.category-card.expanded {
+  animation: pulseGlow 1s ease-in-out;
+}
+
+.category-expand-content {
+  animation: slideDown 0.4s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  overflow: hidden;
+}
+
+.category-chevron {
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.category-chevron.rotated {
+  transform: rotate(180deg);
+}
+
+/* Service Item Animations */
+.service-item {
+  opacity: 0;
+  animation: fadeIn 0.3s ease-out forwards;
+}
+
+.service-item:hover {
+  transform: translateX(4px);
+}
+
+/* Staggered animation delays for service items */
+.service-item:nth-child(1) { animation-delay: 0.05s; }
+.service-item:nth-child(2) { animation-delay: 0.1s; }
+.service-item:nth-child(3) { animation-delay: 0.15s; }
+.service-item:nth-child(4) { animation-delay: 0.2s; }
+.service-item:nth-child(5) { animation-delay: 0.25s; }
+.service-item:nth-child(6) { animation-delay: 0.3s; }
+.service-item:nth-child(7) { animation-delay: 0.35s; }
+.service-item:nth-child(8) { animation-delay: 0.4s; }
+.service-item:nth-child(9) { animation-delay: 0.45s; }
+
+/* Icon shimmer effect on hover */
+.icon-shimmer {
+  position: relative;
+  overflow: hidden;
+}
+
+.icon-shimmer::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+  transition: left 0.5s ease;
+}
+
+.icon-shimmer:hover::after {
+  left: 100%;
+}
+
+/* Staggered fade delays */
+.fade-delay-1 { animation-delay: 0.05s; }
+.fade-delay-2 { animation-delay: 0.1s; }
+.fade-delay-3 { animation-delay: 0.15s; }
+.fade-delay-4 { animation-delay: 0.2s; }
+.fade-delay-5 { animation-delay: 0.25s; }
+
+/* Custom Tooltip Styles */
+@keyframes tooltipIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95) translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+.animate-tooltip-in {
+  animation: tooltipIn 0.15s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Enhanced Native Tooltip Styling */
+[title] {
+  position: relative;
+}
+
+/* Global tooltip override for native title attributes */
+.tooltip-enhanced {
+  position: relative;
+}
+
+.tooltip-enhanced::before,
+.tooltip-enhanced::after {
+  --tooltip-bg: #1e293b;
+  --tooltip-color: white;
+  position: absolute;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.15s ease, transform 0.15s ease, visibility 0.15s;
+  z-index: 9999;
+  pointer-events: none;
+}
+
+.tooltip-enhanced::before {
+  content: attr(data-tooltip);
+  bottom: calc(100% + 8px);
+  left: 50%;
+  transform: translateX(-50%) translateY(4px);
+  padding: 8px 12px;
+  background: var(--tooltip-bg);
+  color: var(--tooltip-color);
+  font-size: 12px;
+  font-weight: 600;
+  white-space: nowrap;
+  border-radius: 8px;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.2), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+}
+
+.tooltip-enhanced::after {
+  content: '';
+  bottom: calc(100% + 2px);
+  left: 50%;
+  transform: translateX(-50%);
+  border: 6px solid transparent;
+  border-top-color: var(--tooltip-bg);
+}
+
+.tooltip-enhanced:hover::before,
+.tooltip-enhanced:hover::after {
+  opacity: 1;
+  visibility: visible;
+}
+
+.tooltip-enhanced:hover::before {
+  transform: translateX(-50%) translateY(0);
+}
+
+/* Modal Centering Fix */
+.modal-centered {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  overflow-y: auto;
+}
+
+.modal-centered > .modal-content {
+  margin: auto;
+  max-height: calc(100vh - 2rem);
+  overflow-y: auto;
+}
+
+/* Referral Marquee Animation */
+@keyframes marquee {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-marquee {
+  animation: marquee 30s linear infinite;
+}
+
+.animate-marquee:hover {
+  animation-play-state: paused;
+}
