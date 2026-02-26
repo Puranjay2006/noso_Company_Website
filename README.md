@@ -2,7 +2,7 @@
 
 A modern full-stack web application built with **FastAPI** (Python) backend and **React + TypeScript** frontend with Vite.
 
-[View Live Website](https://nosocompany.com/)
+**🌐 Live Website:** [https://nosocompany.com/](https://nosocompany.com/)
 
 ---
 
