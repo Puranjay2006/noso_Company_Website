@@ -1,4 +1,4 @@
-# 🏢 NoSo Company
+# noso Company
 
 A modern full-stack web application built with **FastAPI** (Python) backend and **React + TypeScript** frontend with Vite.
 
@@ -228,8 +228,8 @@ choco install mongodb
 ### Clone the Repository
 
 ```bash
-git clone https://github.com/TechyNilesh/NoSo-Company.git
-cd NoSo-Company
+git clone https://github.com/TechyNilesh/noso-Company.git
+cd noso-Company
 ```
 
 ---
@@ -525,16 +525,16 @@ npm run lint
 
 ## 📄 License
 
-This project is private and proprietary to NoSo Company.
+This project is private and proprietary to noso Company.
 
 ---
 
 ## 👥 Contributors
 
-- NoSo Company Development Team
+- noso Company Development Team
 
 ---
 
 <p align="center">
-  Made with ❤️ by NoSo Company
+  Made with ❤️ by noso Company
 </p>
