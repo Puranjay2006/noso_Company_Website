@@ -1,6 +1,7 @@
 # noso Company
 
 A modern full-stack web application built with **FastAPI** (Python) backend and **React + TypeScript** frontend with Vite.
+
 [Website](https://nosocompany.com/)
 
 ---
